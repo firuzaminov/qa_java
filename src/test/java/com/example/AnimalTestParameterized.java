@@ -18,7 +18,7 @@ public class AnimalTestParameterized {
         this.food = food;
     }
 
-    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
+    @Parameterized.Parameters(name = "Test data: {0} {1}")
     public static Object[][] getCities() {
         return new Object[][]{
                 {"Хищник", List.of("Животные", "Птицы", "Рыба")},

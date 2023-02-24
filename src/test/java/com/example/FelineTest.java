@@ -1,48 +1,40 @@
 package com.example;
 
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
 
     @Spy
-    Feline felineSpy;
-
-    @Mock
-    Feline felineMock;
+    private Feline feline;
 
     @Test
-    public void getKittensWithParameterExpectOk() {
+    public void getEatMeatReturnPredator() throws Exception {
+        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        assertEquals(expectedFood, feline.eatMeat());
+    }
+
+    @Test
+    public void getFamilyTest() {
         Feline feline = new Feline();
-        Assert.assertEquals(1, feline.getKittens(1));
+        String expectedFamilyRu = "Кошачьи";
+        assertEquals(expectedFamilyRu, feline.getFamily());
     }
 
     @Test
-    public void getKittensWithoutParameterExpectOk() {
-        felineSpy.getKittens();
-        Mockito.verify(felineSpy, Mockito.times(1)).getKittens(1);
-    }
-
-    @Test
-    public void getFamilyExpectedSuccess() {
+    public void getKittensTest() {
         Feline feline = new Feline();
-        Assert.assertEquals("Кошачьи", feline.getFamily());
-    }
-
-    @Test
-    public void eatMeetExpectedSuccess() throws Exception {
-        when(felineMock.eatMeat()).thenReturn(List.of("Трава", "Различные растения"));
-        Assert.assertEquals(List.of("Трава", "Различные растения"), felineMock.eatMeat());
+        int expectedKittensCount = 1;
+        assertEquals(expectedKittensCount, feline.getKittens());
     }
 }
