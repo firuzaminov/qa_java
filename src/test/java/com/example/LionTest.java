@@ -37,12 +37,15 @@ public class LionTest {
     @Test
     public void doesHasManeExpectedSuccess() throws Exception {
         boolean isException = false;
+        String textExeption = "";
         try {
             Lion lion = new Lion("Неопределившийся", feline);
         } catch (Exception exception) {
             isException = true;
+            textExeption = exception.getMessage();
         }
         Assert.assertEquals(true, isException);
+        Assert.assertEquals("Используйте допустимые значения пола животного - самей или самка", textExeption);
     }
 
     @Test

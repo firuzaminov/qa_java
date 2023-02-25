@@ -15,12 +15,15 @@ public class AnimalTest {
     public void getFoodTestWithExeption() throws Exception {
         Animal animal = new Animal();
         boolean isExeption = false;
+        String expected = "";
         try {
             animal.getFood("Кот");
         } catch (Exception exception) {
             isExeption = true;
+            expected = exception.getMessage();
         }
         Assert.assertEquals(true, isExeption);
+        Assert.assertEquals("Неизвестный вид животного, используйте значение Травоядное или Хищник", expected);
     }
 
 }
